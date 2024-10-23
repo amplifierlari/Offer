@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exclusive Offers</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #f7f8fa, #eef2f3);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        h1 {
+            color: #1a73e8;
+            font-size: 3rem;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        .offer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+        }
+        .offer {
+            background-color: #fff;
+            width: 30%;
+            min-width: 300px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .offer:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        .offer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(26, 115, 232, 0.1);
+            clip-path: circle(150% at 0 0);
+            transition: clip-path 0.5s ease;
+        }
+        .offer:hover::before {
+            clip-path: circle(70% at 50% 50%);
+        }
+        .offer h2 {
+            font-size: 1.75rem;
+            color: #444;
+            margin-bottom: 15px;
+            transition: color 0.3s ease;
+        }
+        .offer:hover h2 {
+            color: #1a73e8;
+        }
+        .offer p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .offer a {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #1a73e8;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 25px;
+            position: relative;
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        .offer a:hover {
+            background-color: #0c54d0;
+        }
+        .countdown {
+            font-size: 1.25rem;
+            color: #ff6347;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Grab These Limited-Time Offers!</h1>
+
+        <div class="offer-container">
+            <!-- Offer 1 -->
+            <div class="offer">
+                <h2>Offer 1: Enter your information now for a chance to win NIKE Shoes.</h2>
+                <p> This offer is only allowed in  United States (US).</p>
+                <a href="https://playabledownload.com/show.php?l=0&u=2266810&id=66965" target="_blank">Grab Offer 1</a>
+                <div class="countdown" id="countdown1"></div>
+            </div>
+
+            <!-- Offer 2 -->
+            <div class="offer">
+                <h2>Offer 2:Enter for Your $100 Shein Gift Card!</h2>
+                <p>Enter your information now for a chance to win.</p>
+                <a href="https://playabledownload.com/show.php?l=0&u=2266810&id=61172" target="_blank">Grab Offer 2</a>
+                <div class="countdown" id="countdown2"></div>
+            </div>
+
+            <!-- Offer 3 -->
+            <div class="offer">
+                <h2>Offer 3: Last and best offer of this week</h2>
+                <p>Get a Domino's Gift Card after these Questions!</p>
+                <a href="https://playabledownload.com/show.php?l=0&u=2266810&id=67153" target="_blank">Grab Offer 3</a>
+                <div class="countdown" id="countdown3"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Countdown timer function
+        function startCountdown(endDate, elementId) {
+            const countdownElement = document.getElementById(elementId);
+            const interval = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endDate - now;
+
+                if (distance <= 0) {
+                    clearInterval(interval);
+                    countdownElement.innerHTML = "Offer Expired";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML = '${days}d ${hours}h ${minutes}m ${seconds}s';
+            }, 1000);
+        }
+
+        // Example: Countdown for 5 days from now
+        const offerEndDate1 = new Date().getTime() + (5 * 24 * 60 * 60 * 1000);
+        const offerEndDate2 = new Date().getTime() + (3 * 24 * 60 * 60 * 1000);
+        const offerEndDate3 = new Date().getTime() + (7 * 24 * 60 * 60 * 1000);
+
+        startCountdown(offerEndDate1, 'countdown1');
+        startCountdown(offerEndDate2, 'countdown2');
+        startCountdown(offerEndDate3, 'countdown3');
+    </script>
+
+</body>
+</html>
